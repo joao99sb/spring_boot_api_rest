@@ -5,11 +5,11 @@ import jakarta.validation.Valid;
 import med.voli.api.doctor.CreateDocData;
 import med.voli.api.doctor.Doctor;
 import med.voli.api.doctor.DoctorRepository;
+import med.voli.api.doctor.DoctorReturn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("medicos")
@@ -20,7 +20,12 @@ public class DocController{
 
     @PostMapping
     @Transactional
-    public void createMed(@RequestBody @Valid CreateDocData json){
+    public void createDoctor(@RequestBody @Valid CreateDocData json){
         repository.save(new Doctor(json));
+    }
+
+    @GetMapping
+    public List<DoctorReturn> listDoctors(){
+        return repository.findAll().stream().map(DoctorReturn::new).toList();
     }
 }

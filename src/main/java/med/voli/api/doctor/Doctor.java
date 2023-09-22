@@ -11,12 +11,13 @@ import java.util.UUID;
 
 @Table(name = "medicos")
 @Entity(name="Medico")
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
+@Getter
 public class Doctor{
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
