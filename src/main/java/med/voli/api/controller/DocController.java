@@ -1,6 +1,7 @@
 package med.voli.api.controller;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import med.voli.api.doctor.CreateDocData;
 import med.voli.api.doctor.Doctor;
 import med.voli.api.doctor.DoctorRepository;
@@ -16,9 +17,10 @@ public class DocController{
 
     @Autowired
     private DoctorRepository repository;
+
     @PostMapping
     @Transactional
-    public void createMed(@RequestBody CreateDocData json){
+    public void createMed(@RequestBody @Valid CreateDocData json){
         repository.save(new Doctor(json));
     }
 }

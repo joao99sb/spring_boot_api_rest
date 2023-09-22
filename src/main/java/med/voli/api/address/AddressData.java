@@ -1,4 +1,10 @@
 package med.voli.api.address;
 
-public record AddressData(String uf, String cidade){
+import jakarta.validation.constraints.NotBlank;
+
+public record AddressData(
+        @NotBlank
+        String uf,
+        @NotBlank
+        String cidade){
 }
