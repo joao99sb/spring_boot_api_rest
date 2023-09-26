@@ -29,6 +29,8 @@ public class Doctor{
     @Enumerated
     private Address address;
 
+    private Boolean active;
+
     public Doctor(CreateDocData data) {
         this.name = data.name();
         this.email = data.email();
@@ -36,5 +38,17 @@ public class Doctor{
 
         this.address = new Address(data.endereco());
         this.specialist = data.especialidade();
+
+    }
+
+    public void updateInfos(UpdateDoctorData json) {
+        if(json.name()!=null){
+            this.name = json.name();
+
+        }
+    }
+
+    public void inactive() {
+        this.active = false;
     }
 }
